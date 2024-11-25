@@ -28,15 +28,24 @@ Development environment:
 - Carthage
 
 # Build Instructions
- - Clone repository.
- - Bootstrap carthage, this will install the required dependencies for the app:
- 
-     `carthage bootstrap --platform macOS`
- 
- - Update signing Team to be your Personal or organizational Team in Xcode. This is needed to build the app locally. If you have problems with code signing, please also check these articles to see if it helps:
-   - https://developer.apple.com/support/code-signing/
-   - https://help.apple.com/xcode/mac/current/#/dev60b6fbbc7 
- - Run the app in Xcode.
+
+- Clone the repository and open a terminal in it.
+- Use Carthage to fetch the dependencies, delete the iOS dependency because it breaks the build, and finally build with xcode:
+  ```shell
+  arch -arch x86_64 /bin/sh
+  cd DevUtilsApp
+
+  carthage update --no-build
+  rm Carthage/Checkouts/Highlightr/Highlightr.xcodeproj/xcshareddata/xcschemes/Highlightr-iOS.xcscheme  
+
+  carthage build --platform macOS
+  xcodebuild -scheme DevUtils CODE_SIGN_IDENTITY="" DEVELOPMENT_TEAM="" build
+  ```
+
+ - Congrats, you can now open the folder where you will find the built `DevUtils.app`:
+   ```shell
+   open ~/Library/Developer/Xcode/DerivedData/DevUtils-*/Build/Products/Debug/
+   ``` 
  
 # Contributing
 
