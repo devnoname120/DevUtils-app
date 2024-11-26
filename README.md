@@ -22,6 +22,7 @@ DevUtils is a **paid "source-available"** app. That means I'm selling the pre-bu
 This source code is a delayed version of DevUtils.
 
 Development environment:
+- Homebrew
 - Swift 5.1+
 - Xcode 11.1+
 - Swift Package Manager
@@ -30,10 +31,20 @@ Development environment:
 # Build Instructions
 
 - Clone the repository and open a terminal in it.
+- Install Xcode (if needed):
+  ```shell
+  sudo xcode-select --install
+  sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+  sudo xcodebuild -license accept
+  ```
+- Install carthage using Homebrew:
+  ```shell
+  brew install carthage
+  ```
 - Use Carthage to fetch the dependencies, delete the iOS dependency because it breaks the build, and finally build with xcode:
   ```shell
-  arch -arch x86_64 /bin/sh
   cd DevUtilsApp
+  arch -arch x86_64 /bin/sh
 
   carthage update --no-build
   rm Carthage/Checkouts/Highlightr/Highlightr.xcodeproj/xcshareddata/xcschemes/Highlightr-iOS.xcscheme  
