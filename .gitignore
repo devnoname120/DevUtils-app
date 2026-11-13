@@ -1,5 +1,8 @@
 .DS_Store
 
+# Local isolated workspaces
+.worktrees/
+
 Carthage
 
 # Xcode per-user config
